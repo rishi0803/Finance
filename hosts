@@ -1,0 +1,6 @@
+[webserver]
+18.223.211.21 ansible_user=rishi
+
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3
+
