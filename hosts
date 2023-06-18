@@ -1,6 +1,7 @@
 [webserver]
-18.223.211.21 ansible_user=rishi
+3.141.192.122
 
 [all:vars]
 ansible_python_interpreter=/usr/bin/python3
+ansible_ssh_user=ubuntu
 
