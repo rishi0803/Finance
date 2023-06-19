@@ -1,4 +1,4 @@
- - name: Configure Docker on EC2 Instances
+ - name: Configure Docker on Instances
    hosts: web-servers
    become: true
    connection: ssh
