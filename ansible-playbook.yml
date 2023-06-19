@@ -3,7 +3,7 @@
    hosts: web-servers
    become: true
    connection: ssh
-   ansible_user: rishi  
+   ansible_user: ubuntu  
    tasks : 
    - name: updating apt
      command: sudo apt-get update
