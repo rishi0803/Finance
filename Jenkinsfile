@@ -1,7 +1,12 @@
 pipeline{
+    environment{
+        AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID')
+        AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
+    }
     agent any
     tools{
         maven 'maven'
+        terraform 'terraform'
     }
     stages{
         stage('Build maven project'){
@@ -34,6 +39,18 @@ pipeline{
             }
             
         }
+        stage('terraform init & plan'){
+            steps{
+                script{
+                    sh 'terraform init'
+                    sh 'terraform plan -out tfplan'
+                    sh 'terraform apply --auto-approve tfplan'
+                    
+                }
+            }
+            
+        }
+        
         stage('Execute Playbook'){
             steps{
                ansiblePlaybook credentialsId: 'jenkinsAnsible', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'hosts', playbook: 'ansible-playbook.yml'
